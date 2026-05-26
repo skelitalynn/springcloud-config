@@ -1,13 +1,19 @@
-server:
-  port: 9003
-
 spring:
   application:
-    name: myshop-web
-  boot:
-    admin:
-      client:
-        url: http://localhost:7779
+    name: myshop-user
+
+  datasource:
+    url: jdbc:mysql://192.168.138.129:3306/springcloud?characterEncoding=UTF8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    database: mysql
+    hibernate:
+      ddl-auto: update
 
 eureka:
   client:
@@ -18,15 +24,6 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.application.name}:${server.port}
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-  endpoint:
-    health:
-      show-details: always
 
 springdoc:
   swagger-ui:
