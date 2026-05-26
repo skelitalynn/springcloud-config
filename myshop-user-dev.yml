@@ -1,0 +1,33 @@
+server:
+  port: 9003
+
+spring:
+  application:
+    name: myshop-web
+  boot:
+    admin:
+      client:
+        url: http://localhost:7779
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8888/eureka,http://localhost:9999/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${server.port}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
